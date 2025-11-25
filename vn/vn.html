@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giúp tui!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <style>
+  
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+	
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+	  background-image:url('vietnam.png');
+	  background-repeat: no-repeat;
+	  background-position: center;
+	  background-attachment: fixed;
+      background-size: cover;
+      color: #333;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+	  position: relative;
+      background: #f2f6f9;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 50);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      color: orange;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+    img.qr {
+      width: 260px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      margin-bottom: 1.5rem;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    .badge {
+      display: inline-block;
+      background: red;
+      color: yellow;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+    }
+    .button2 {
+  width: 185px; height: 55px;
+  background-color: #f2f6f9;
+  border: 2px solid #1c5ee3 ;
+  border-radius: 50px;
+  color: #552fab;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 25px;
+  font-family: "Inter", Monospace;
+} 
+
+/* Darker background on mouse-over */
+  .button2:hover {
+  background-color: #1c5ee3;
+  color: white;
+}
+   
+	.button {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  border: none;
+  padding: 15px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+    }
+    .button1 {width: 70px; height: 50px; border: 1px; border-radius: 5px;}
+    .button1:hover {
+      background-color: #1c5ee3;
+      color: white;
+               }
+    .button1:before {
+    font-family: fontAwesome;
+    content: "\f0ac\00a0";
+                }
+    @media (max-width: 480px) {
+      body {
+        padding: 2rem;
+      }
+      .container {
+        padding: 2rem;
+      }
+	  .button {
+	    top: 1.5rem;
+		right: 1.5rem;
+	  }
+    }
+  </style>
+</head>
+<script>
+    document.oncontextmenu = function () { return false; }
+
+ 
+    function downloadQR() {
+        // Lấy thẻ hình ảnh mã QR (dùng ID đã thêm)
+        var qrImage = document.getElementById('qrCodeImage');
+        
+        // Tạo thẻ <a> tạm thời trong bộ nhớ
+        var link = document.createElement('a');
+        
+        // Thiết lập đường dẫn và tên file tải xuống
+        link.href = qrImage.src; // Lấy đường dẫn ảnh từ thẻ <img>
+        link.download = 'Aoxloty_VietinBank_QR.png';
+        
+        // Kích hoạt việc tải xuống (bắt chước hành vi bấm vào thẻ <a>)
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link); // Xóa thẻ <a> tạm thời
+    }
+</script>
+<body onmousedown="return false" onselectstart="return false">
+
+  <div class="container">
+    <a class="button button1" href="../index.html" ><b>ENG</b></a>
+       <div style="height: 3rem;"></div>
+    <div class="badge">Only in Vietnam!</div>
+	
+    <h1><b>Aoxloty</b></h1>
+    <p>Nếu bạn muốn giúp tui và đang ở Việt Nam, thì đây chính là cách!</p>
+    <img src="./qr-momo.png" alt="Vietinbank QR code" class="qr" id="qrCodeImage"/ >
+	 <div style="height: 0.01rem;"></div>
+	<button class="button2" onclick="downloadQR()"><i class="fa fa-cloud-download"></i> <b>Tải về</b></button></br>
+	
+	<div style="height: 1rem;"></div>
+    <p>Quét mã bằng app ngân hàng hoặc app thanh toán của bạn.</p>
+    <div class="footer">
+      Cảm ơn bạn nhiều nha💛<br/>
+      ©2025 Aoxloty.<br/>
+      Template by <a href="https://github.com/congtuuit/donate-page-template" target="blank">congtuuit</a>.
+    </div>
+  </div>
+
+</body>
+
+</html>
