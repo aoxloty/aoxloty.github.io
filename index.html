@@ -153,49 +153,38 @@
 
 
   <script>
-  async function initPortfolio() {
-        try {
-            // 1. Lấy dữ liệu từ file JSON (thay thế cho data.js)
-            const response = await fetch('/data.json');
-            const data = await response.json();
-            
-            const artData = data.artData;
-            const videoData = data.videoData;
+  async function loadHomeGallery() {
+    const galleryContainer = document.getElementById('gallery-container');
+    try {
+        const response = await fetch('data.json');
+        const data = await response.json();
 
-            // 2. Hiển thị Tranh mới nhất
-            const galleryContainer = document.getElementById('main-gallery');
-            const artArray = Object.entries(artData).reverse();
-            const latestArt = artArray.slice(0, 2);
+        galleryContainer.innerHTML = ''; // Xóa chữ "Loading"
 
-            latestArt.forEach(([id, art]) => {
+        // Kiểm tra dữ liệu artData dạng Array
+        if (data.artData && Array.isArray(data.artData)) {
+            // Lấy 6-8 tranh mới nhất để hiện ở trang chủ
+            const latestArts = data.artData.slice(-8).reverse(); 
+
+            latestArts.forEach(art => {
                 const artItem = document.createElement('div');
                 artItem.className = 'art-item';
                 artItem.innerHTML = `
-                    <a href="art.html?id=${id}">
-                        <img src="${art.image}" alt="${art.title}">
+                    <a href="art.html?id=${art.id}">
+                        <img src="${art.image}" alt="${art.title}" loading="lazy">
                     </a>
                 `;
                 galleryContainer.appendChild(artItem);
             });
-
-            // 3. Hiển thị Video mới nhất
-            const videoFrame = document.getElementById('latest-video-frame');
-            const videoTitleDisplay = document.getElementById('latest-video-title');
-
-            if (videoData && videoData.length > 0) {
-                const latestVideo = videoData[videoData.length - 1]; 
-                videoFrame.src = latestVideo.embedUrl;
-                videoTitleDisplay.innerText = latestVideo.title;
-            }
-
-        } catch (error) {
-            console.error("Lỗi khi tải dữ liệu từ CMS:", error);
-            document.getElementById('main-gallery').innerHTML = "<p>Could not load gallery.</p>";
+        } else {
+            galleryContainer.innerHTML = '<p style="grid-column: 1/-1;">Chưa có tranh nào được đăng.</p>';
         }
+    } catch (error) {
+        console.error("Lỗi tải trang chủ:", error);
+        galleryContainer.innerHTML = '<p>Không thể kết nối dữ liệu.</p>';
     }
-
-    // Chạy hàm khởi tạo
-    initPortfolio();
+}
+loadHomeGallery();
 
      document.oncontextmenu = function () { return false; }
 	document.onkeypress = function (event) {
