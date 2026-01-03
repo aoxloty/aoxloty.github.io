@@ -2,7 +2,7 @@ backend:
   name: github
   repo: aoxloty/aoxloty.github.io
   branch: main
-  base_url: https://oauth.decapcms.org
+  base_url: https://aoxloty.vercel.app/admin/
   auth_endpoint: /auth
 
 media_folder: "assets/art"
