@@ -86,31 +86,40 @@
 
 <script>
     async function loadFullGallery() {
-    const galleryContainer = document.getElementById('gallery-container');
-    try {
-        const response = await fetch('../data.json'); 
-        const data = await response.json();
+        // Đã đổi lại thành 'full-gallery' để khớp với HTML bên trên
+        const galleryContainer = document.getElementById('full-gallery');
+        try {
+            const response = await fetch('../data.json'); 
+            const data = await response.json();
 
-        if (galleryContainer) galleryContainer.innerHTML = '';
+            if (galleryContainer) galleryContainer.innerHTML = '';
 
-        if (data.artData && Array.isArray(data.artData)) {
-            // Hiện toàn bộ tranh
-            [...data.artData].reverse().forEach(art => {
-                const artItem = document.createElement('div');
-                artItem.className = 'art-item';
-                artItem.innerHTML = `
-                    <a href="../art.html?id=${art.id}">
-                        <img src="../${art.image}" alt="${art.title}" style="width:100%; border-radius:10px;">
-                    </a>
-                `;
-                galleryContainer.appendChild(artItem);
-            });
+            if (data.artData && Array.isArray(data.artData)) {
+                // Đảo ngược danh sách để tranh mới nhất lên đầu
+                [...data.artData].reverse().forEach(art => {
+                    const artItem = document.createElement('div');
+                    artItem.className = 'art-item';
+                    
+                    // Xử lý đường dẫn ảnh: Nếu trong data.json là "assets/art/..." 
+                    // thì cần thêm "../" vì file này nằm trong thư mục con
+                    const imagePath = art.image.startsWith('http') ? art.image : `../${art.image}`;
+                    
+                    artItem.innerHTML = `
+                        <a href="../art.html?id=${art.id}">
+                            <img src="${imagePath}" alt="${art.title}">
+                        </a>
+                    `;
+                    galleryContainer.appendChild(artItem);
+                });
+            } else {
+                galleryContainer.innerHTML = '<p>Chưa có tác phẩm nào để hiển thị.</p>';
+            }
+        } catch (error) {
+            console.error("Lỗi tải Gallery:", error);
+            if (galleryContainer) galleryContainer.innerHTML = '<p>Lỗi nạp dữ liệu tranh.</p>';
         }
-    } catch (error) {
-        console.error("Lỗi tải Gallery:", error);
     }
-}
-loadFullGallery();
+    loadFullGallery();
 </script>
 </body>
 </html>
