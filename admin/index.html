@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Trang Admin</title>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   </head>
   <body>
     <h1>Trang Admin</h1>
@@ -22,10 +22,9 @@
 };
 
       // Khởi tạo Firebase
-      const app = firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
 
-      // Xử lý đăng nhập với Google
       const loginBtn = document.getElementById("loginBtn");
 
       loginBtn.addEventListener("click", () => {
@@ -34,7 +33,6 @@
           .then((result) => {
             const user = result.user;
             alert(`Xin chào ${user.displayName}`);
-            // Sau khi đăng nhập, bạn có thể chuyển hướng hoặc tải lại trang
           })
           .catch((error) => {
             console.error(error);
