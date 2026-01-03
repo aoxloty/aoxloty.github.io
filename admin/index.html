@@ -1,43 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Trang Admin</title>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  </head>
-  <body>
-    <h1>Trang Admin</h1>
-    <button id="loginBtn">Đăng nhập với Google</button>
-
-    <script>
-      // Cấu hình Firebase
-      const firebaseConfig = {
-  apiKey: "AIzaSyALTrutr6VsBSPyv0RDVSnuZ1by8HTD_Hs",
-  authDomain: "aoxloty-ab7b3.firebaseapp.com",
-  projectId: "aoxloty-ab7b3",
-  storageBucket: "aoxloty-ab7b3.firebasestorage.app",
-  messagingSenderId: "656551781954",
-  appId: "1:656551781954:web:520ad183ddd5de7f476fdb"
-};
-
-      // Khởi tạo Firebase
-      firebase.initializeApp(firebaseConfig);
-      const auth = firebase.auth();
-
-      const loginBtn = document.getElementById("loginBtn");
-
-      loginBtn.addEventListener("click", () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider)
-          .then((result) => {
-            const user = result.user;
-            alert(`Xin chào ${user.displayName}`);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      });
-    </script>
-  </body>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin CMS</title>
+  <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+</head>
+<body>
+</body>
 </html>
