@@ -18,7 +18,7 @@ collections:
             widget: "list"
             summary: "{{title}}"
             fields:
-              - {label: "ID (ví dụ: tranh1)", name: "id", widget: "id"}
+              - {label: "ID (ví dụ: tranh1)", name: "id", widget: "string"}
               - {label: "Tiêu đề", name: "title", widget: "string"}
               - {label: "Ảnh", name: "image", widget: "image"}
               - {label: "Mô tả", name: "description", widget: "text"}
