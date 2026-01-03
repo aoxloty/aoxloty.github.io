@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: aoxloty/aoxloty.github.io
+  repo: aoxloty/aoxloty
   branch: main
   auth_scope: repo
 
