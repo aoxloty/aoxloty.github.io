@@ -446,26 +446,80 @@
 
 
     @media (max-width: 600px) {
-      .custom-icon-wrapper {
-        width: 40px;
-
-        height: 40px;
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        /* Ép xuống dòng khi hết chỗ */
+        justify-content: center;
+        gap: 10px;
+        /* Tăng khoảng cách giữa các icon cho dễ bấm */
+        max-width: 90%;
+        /* Giới hạn độ rộng để icon gom lại giữa */
+        margin: 15px auto;
       }
 
-
-      .social-links {
-        gap: 12px;
-        margin-top: 15px;
+      /* Tăng kích thước icon */
+      .custom-icon-wrapper {
+        width: 50px;
+        /* Tăng từ 40px lên 60px */
+        height: 50px;
+        flex: 0 0 calc(33.33% - 20px);
+        /* Chia 3 cột trên một hàng */
+        max-width: 60px;
+        /* Nhưng không để nó to quá mức */
       }
 
       .profile-header {
         flex-direction: column;
         text-align: center;
       }
-    }
 
-    .profile-header img {
-      margin-bottom: 0 !important;
+      .profile-header img {
+        margin-bottom: 0 !important;
+      }
+
+      .discord-card {
+        min-width: 280px;
+        /* Thu hẹp chiều ngang tối thiểu */
+        padding: 10px 12px;
+        /* Giảm khoảng cách đệm bên trong */
+        gap: 10px;
+        /* Thu hẹp khoảng cách giữa avatar và text */
+        transform: scale(0.9);
+        /* Thu nhỏ toàn bộ card đi 10% */
+        margin: 10px auto;
+        /* Giảm khoảng cách bên ngoài */
+      }
+
+      .avatar-container {
+        width: 60px;
+        /* Thu nhỏ avatar */
+        height: 60px;
+        margin-left: -5px;
+      }
+
+      .user-info #username {
+        font-size: 16px;
+        /* Giảm cỡ chữ tên */
+      }
+
+      .user-info #activity {
+        font-size: 12px;
+        /* Giảm cỡ chữ trạng thái */
+      }
+
+      .badge-icon {
+        width: 20px;
+        /* Thu nhỏ các huy hiệu */
+        height: 20px;
+      }
+
+      .card-link-btn {
+        font-size: 9px;
+        padding: 2px 5px;
+        bottom: 5px;
+        right: 8px;
+      }
     }
   </style>
 </head>
