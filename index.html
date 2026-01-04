@@ -675,7 +675,7 @@
         // 3. Thông tin User
         document.getElementById('username').innerText = data.discord_user.global_name || data.discord_user.username;
         const activity = data.activities.find(a => a.type === 4) || data.activities[0];
-        document.getElementById('activity').innerText = activity ? (activity.state || activity.name) : "Online";
+        document.getElementById('activity').innerText = activity ? (activity.state || activity.name) : "Offline";
 
         // 4. Status
         const colors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#80848e' };
