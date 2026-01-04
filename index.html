@@ -278,6 +278,173 @@
 
     }
 
+    .discord-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #111214;
+      padding: 15px 20px;
+      border-radius: 12px;
+      width: fit-content;
+      min-width: 300px;
+      color: white;
+      margin: 20px auto;
+    }
+
+    .card-link-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #b5bac1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 11px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .card-link-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: -10px;
+    }
+
+    .decoration-overlay {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      pointer-events: none;
+      display: none;
+      /* Chỉ hiện khi có dữ liệu */
+    }
+
+    .user-info #username {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .user-info #activity {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      font-size: 14px;
+      color: #b5bac1;
+    }
+
+    .name-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
+    .badges-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Kích thước các icon huy hiệu */
+    .badge-icon {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .badge-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .badge-wrapper:hover::after {
+      content: attr(data-title);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #111214;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #avatar {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      z-index: 1;
+      position: relative;
+    }
+
+    #username {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    #decoration {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    #status {
+      position: absolute;
+      bottom: 3px;
+      right: 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 3px solid #111214;
+      z-index: 3;
+
+    }
+
+    #badges {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+
+
     @media (max-width: 600px) {
       .custom-icon-wrapper {
         width: 40px;
@@ -319,41 +486,14 @@
         <p style="margin-bottom: 0;">Hello, I'm Aoxloty! An artist and animator.</p>
         <p>I like creating digital art and animations.</p>
         <p>Welcome to my portfolio where I showcase my latest drawings and video works. Feel free to explore!</p>
-        <div class="social-links">
-          <a href="https://www.youtube.com/@aoxloty" class="custom-icon-wrapper" title="Youtube" target="_blank">
-            <img src="social-svg/youtube-gray.png" class="icon-normal" alt="Youtube">
-            <img src="social-svg/youtube.png" class="icon-hover" alt="Youtube">
-          </a>
 
-          <a href="https://bsky.app/profile/aoxloty.bsky.social" class="custom-icon-wrapper" title="Bluesky"
-            target="_blank">
-            <img src="social-svg/bluesky-gray.png" class="icon-normal" alt="Bluesky">
-            <img src="social-svg/bluesky.png" class="icon-hover" alt="Bluesky">
-          </a>
 
-          <a href="https://discord.gg/aFyydgZGyt" class="custom-icon-wrapper" title="Discord" target="_blank">
-            <img src="social-svg/discord-gray.png" class="icon-normal" alt="Discord">
-            <img src="social-svg/discord.png" class="icon-hover" alt="Discord">
-          </a>
-
-          <a href="https://www.roblox.com/users/3589247121/profile" class="custom-icon-wrapper" title="Roblox"
-            target="_blank">
-            <img src="social-svg/roblox-gray.png" class="icon-normal" alt="Roblox">
-            <img src="social-svg/roblox.png" class="icon-hover" alt="Roblox">
-          </a>
-
-          <a href="https://steamcommunity.com/id/aoxloty" class="custom-icon-wrapper" title="Steam" target="_blank">
-            <img src="social-svg/steam-gray.png" class="icon-normal" alt="Steam">
-            <img src="social-svg/steam.png" class="icon-hover" alt="Steam">
-          </a>
-
-          <a href="https://toyhou.se/aoxloty" class="custom-icon-wrapper" title="Toyhouse" target="_blank">
-            <img src="social-svg/toyhouse-gray.png" class="icon-normal" alt="Toyhouse">
-            <img src="social-svg/toyhouse.png" class="icon-hover" alt="Toyhouse">
-          </a>
-        </div>
       </div>
     </div>
+
+
+
+
 
     <h2><b>Latest Drawings</b></h2>
     <div class="art-gallery" id="main-gallery"></div>
@@ -367,8 +507,60 @@
     </div>
     <h3 id="latest-video-title" style="margin-top: 10px; font-size: 1.1rem; color: #333;"></h3>
     <a href="/video/all-video.html" class="btn-others">Show more</a>
-    <br /><br />
-    <a href="/language/index.html" class="btn-support">Support My Work 💛</a>
+
+    <h2><b>Social Media</b></h2>
+    <div class="discord-card">
+      <div class="avatar-container">
+        <img id="avatar" src="" alt="Avatar">
+        <img id="decoration" src="" onerror="this.style.display='none'">
+        <div id="status"></div>
+      </div>
+      <div class="user-info">
+        <div id="username">Loading...</div>
+        <div id="activity">Đang tải...</div>
+        <div id="badges" style="display: flex; gap: 4px; align-items: center;"></div>
+      </div>
+      <a href="https://discord.com/users/639087320795971625" class="card-link-btn" target="_blank">
+        Profile <i class="fas fa-external-link-alt" style="font-size: 9px; margin-left: 3px;"></i>
+      </a>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.youtube.com/@aoxloty" class="custom-icon-wrapper" title="Youtube" target="_blank">
+        <img src="social-svg/youtube-gray.png" class="icon-normal" alt="Youtube">
+        <img src="social-svg/youtube.png" class="icon-hover" alt="Youtube">
+      </a>
+
+      <a href="https://bsky.app/profile/aoxloty.bsky.social" class="custom-icon-wrapper" title="Bluesky"
+        target="_blank">
+        <img src="social-svg/bluesky-gray.png" class="icon-normal" alt="Bluesky">
+        <img src="social-svg/bluesky.png" class="icon-hover" alt="Bluesky">
+      </a>
+
+      <a href="https://discord.gg/aFyydgZGyt" class="custom-icon-wrapper" title="Discord" target="_blank">
+        <img src="social-svg/discord-gray.png" class="icon-normal" alt="Discord">
+        <img src="social-svg/discord.png" class="icon-hover" alt="Discord">
+      </a>
+
+      <a href="https://www.roblox.com/users/3589247121/profile" class="custom-icon-wrapper" title="Roblox"
+        target="_blank">
+        <img src="social-svg/roblox-gray.png" class="icon-normal" alt="Roblox">
+        <img src="social-svg/roblox.png" class="icon-hover" alt="Roblox">
+      </a>
+
+      <a href="https://steamcommunity.com/id/aoxloty" class="custom-icon-wrapper" title="Steam" target="_blank">
+        <img src="social-svg/steam-gray.png" class="icon-normal" alt="Steam">
+        <img src="social-svg/steam.png" class="icon-hover" alt="Steam">
+      </a>
+
+      <a href="https://toyhou.se/aoxloty" class="custom-icon-wrapper" title="Toyhouse" target="_blank">
+        <img src="social-svg/toyhouse-gray.png" class="icon-normal" alt="Toyhouse">
+        <img src="social-svg/toyhouse.png" class="icon-hover" alt="Toyhouse">
+      </a>
+    </div>
+
+
+    <a href="/language/index.html" class="btn-support" style="margin-top: 20px;">Support My Work 💛</a>
 
     <div class="footer">
       ©2026 Aoxloty.<br />
@@ -381,6 +573,80 @@
 
 
   <script>
+    const MY_ID = "639087320795971625";
+
+    async function updateDiscord() {
+      try {
+        const r = await fetch(`https://api.lanyard.rest/v1/users/${MY_ID}`);
+        const { data } = await r.json();
+
+        // 1. Avatar
+        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${MY_ID}/${data.discord_user.avatar}.webp?size=160`;
+
+        // 2. Xử lý Decoration Hình Động
+        const deco = document.getElementById('decoration');
+        const decoData = data.discord_user.avatar_decoration_data;
+
+        if (decoData) {
+          // ĐƯỜNG DẪN ĐÚNG: Cần dùng SKU_ID và ASSET ID
+          // Cấu trúc: .../avatar-decoration-presets/<ASSET_ID>.png
+          const assetId = decoData.asset;
+          deco.src = `https://cdn.discordapp.com/avatar-decoration-presets/${assetId}.png?size=160`;
+          deco.style.display = "block";
+        } else {
+          deco.style.display = "none";
+        }
+
+        // 3. Thông tin User
+        document.getElementById('username').innerText = data.discord_user.global_name || data.discord_user.username;
+        const activity = data.activities.find(a => a.type === 4) || data.activities[0];
+        document.getElementById('activity').innerText = activity ? (activity.state || activity.name) : "Online";
+
+        // 4. Status
+        const colors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#80848e' };
+        document.getElementById('status').style.backgroundColor = colors[data.discord_status];
+
+        // 5. Badges
+        const badgesContainer = document.getElementById('badges');
+        badgesContainer.innerHTML = ''; // Làm sạch trước khi chèn
+
+        const myBadgeIds = [
+          "8a88d63823d8a71cd5e390baa45efa02", // HypeSquad Bravery 
+          "6de6d34650760ba5551a79732e98ed60", // Legacy Username 
+          "7d9ae358c8c5e118768335dbe68b4fb8", // Quest Completed 
+          "83d8a1eb09a8d64e59233eec5d4d5c2d"  // Luma Orb
+        ];
+
+        myBadgeIds.forEach(id => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'badge-wrapper';
+
+          const badgeNames = {
+            "8a88d63823d8a71cd5e390baa45efa02": "HypeSquad Bravery",
+            "6de6d34650760ba5551a79732e98ed60": "Originally known as notanitvn#3391",
+            "7d9ae358c8c5e118768335dbe68b4fb8": "Quest Completed",
+            "83d8a1eb09a8d64e59233eec5d4d5c2d": "Luma Orb"
+          };
+
+          wrapper.setAttribute('data-title', badgeNames[id] || "Badge");
+
+          const img = document.createElement('img');
+          img.src = `https://cdn.discordapp.com/badge-icons/${id}.png`;
+          img.className = 'badge-icon';
+
+          wrapper.appendChild(img);
+          badgesContainer.appendChild(wrapper);
+        });
+
+      } catch (e) {
+        console.error("Lỗi:", e);
+      }
+    }
+
+    updateDiscord();
+    setInterval(updateDiscord, 15000); // Cập nhật mỗi 15 giây
+
+
     async function loadHomeContent() {
       const galleryContainer = document.getElementById('main-gallery');
       const videoFrame = document.getElementById('latest-video-frame');
