@@ -281,14 +281,28 @@
     .discord-card {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       background: #111214;
-      padding: 15px 20px;
       border-radius: 12px;
-      width: fit-content;
+      width: 300px;
       min-width: 300px;
       color: white;
       margin: 20px auto;
+      overflow: hidden;
+      /* Để banner không tràn ra ngoài góc tròn */
+      padding: 0 0 15px 0;
+      /* Bỏ padding trên để banner sát mép */
+    }
+
+    .discord-banner {
+      width: 100%;
+      height: 60px;
+      /* Độ cao banner */
+      background-color: #5865f2;
+      /* Màu mặc định nếu không load được banner */
+      background-size: cover;
+      background-position: center;
     }
 
     .card-link-btn {
@@ -321,12 +335,18 @@
     .avatar-container {
       position: relative;
       width: 80px;
+      /* Cố định chiều rộng */
       height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: -10px;
+      /* Cố định chiều cao */
+      margin-top: -40px;
+      margin-left: 15px;
+      border: 6px solid #111214;
+      border-radius: 50%;
+      background: #111214;
+      /* Không dùng display: flex ở đây để tránh làm lệch các lớp con */
     }
+
+
 
     .decoration-overlay {
       position: absolute;
@@ -342,8 +362,7 @@
     .user-info #username {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
+      text-align: center;
       font-weight: bold;
       font-size: 18px;
     }
@@ -351,8 +370,7 @@
     .user-info #activity {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
+      text-align: center;
       font-size: 14px;
       color: #b5bac1;
     }
@@ -402,11 +420,11 @@
     }
 
     #avatar {
-      width: 80%;
-      height: 80%;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      z-index: 1;
-      position: relative;
+      object-fit: cover;
+      display: block;
     }
 
     #username {
@@ -416,24 +434,28 @@
 
     #decoration {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: -11%;
+      /* Căn chỉnh để bao quanh avatar */
+      left: -11%;
+      width: 122%;
+      height: 122%;
       z-index: 2;
       pointer-events: none;
     }
 
     #status {
       position: absolute;
-      bottom: 3px;
-      right: 5px;
-      width: 18px;
-      height: 18px;
+      bottom: -2px;
+      /* Đẩy xuống sát mép dưới */
+      right: -2px;
+      /* Đẩy sang sát mép phải */
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      border: 3px solid #111214;
+      border: 4px solid #111214;
+      /* Viền đen dày để tạo khoảng cách */
       z-index: 3;
-
+      /* Luôn nằm trên cùng */
     }
 
     #badges {
@@ -443,7 +465,49 @@
       margin-top: 5px;
     }
 
+    #backToTop {
+      opacity: 0;
+      visibility: hidden;
 
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      width: 50px;
+      /* Chiều rộng cố định */
+      height: 50px;
+      /* Chiều cao cố định */
+      border: none;
+      background-color: #2563eb;
+      /* Màu xanh hiện đại */
+      color: white;
+      border-radius: 50%;
+      /* Hình tròn tuyệt đối */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      /* Đổ bóng nhẹ */
+      cursor: pointer;
+      transition: opacity 0.5s ease, visibility 0.5s;
+      display: flex;
+      /* Để icon luôn ở giữa */
+      align-items: center;
+      justify-content: center;
+    }
+
+    #backToTop:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-5px);
+      /* Nhảy nhẹ lên khi di chuột vào */
+    }
+
+    #backToTop i {
+      font-size: 20px;
+      /* Chỉnh cỡ biểu tượng */
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
     @media (max-width: 600px) {
       .container {
@@ -551,6 +615,8 @@
 
     <div style="height: 1rem;"></div>
     <h1><b>Aoxloty's Portfolio</b></h1>
+    <button id="backToTop" title="Lên đầu trang">
+      <i class="fas fa-chevron-up"></i> </button>
     <div class="profile-header">
       <img src="Untitled-1.png" alt="Aoxloty"
         style="width:177px; height:170px; border-radius: 30%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
@@ -585,6 +651,7 @@
 
     <h2><b>Social Media</b></h2>
     <div class="discord-card">
+      <div class="discord-banner" id="banner"></div>
       <div class="avatar-container">
         <img id="avatar" src="" alt="Avatar">
         <img id="decoration" src="" onerror="this.style.display='none'">
@@ -648,78 +715,134 @@
 
 
   <script>
+    let mybutton = document.getElementById("backToTop");
+
+    // Khi người dùng cuộn chuột xuống 20px từ đầu trang, hiện nút
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      let mybutton = document.getElementById("backToTop");
+
+      // Kiểm tra nếu cuộn xuống quá 100px
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        mybutton.classList.add("show");
+      } else {
+        mybutton.classList.remove("show");
+      }
+    }
+
+    // Khi nhấn vào nút, cuộn lên đầu trang
+    mybutton.onclick = function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Tạo hiệu ứng cuộn mượt mà
+      });
+    };
+
     const MY_ID = "639087320795971625";
 
     async function updateDiscord() {
       try {
-        const r = await fetch(`https://api.lanyard.rest/v1/users/${MY_ID}`);
-        const { data } = await r.json();
+        // Lấy dữ liệu profile từ dcdn.dstn.to
+        const response = await fetch(`https://dcdn.dstn.to/profile/${MY_ID}`);
+        const data = await response.json();
+        const user = data.user;
 
-        // 1. Avatar
-        document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${MY_ID}/${data.discord_user.avatar}.webp?size=160`;
+        const avatarImg = document.getElementById('avatar');
+        avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=160`;
 
-        // 2. Xử lý Decoration Hình Động
+        // Cập nhật Avatar Decoration (Khung trang trí)
         const deco = document.getElementById('decoration');
-        const decoData = data.discord_user.avatar_decoration_data;
+        // Kiểm tra dữ liệu từ discord_user hoặc trực tiếp từ user tùy vào API trả về
+        const decoData = (data.discord_user && data.discord_user.avatar_decoration_data)
+          || (data.user && data.user.avatar_decoration_data)
+          || data.avatar_decoration_data;
 
-        if (decoData) {
-          // ĐƯỜNG DẪN ĐÚNG: Cần dùng SKU_ID và ASSET ID
-          // Cấu trúc: .../avatar-decoration-presets/<ASSET_ID>.png
+        if (decoData && decoData.asset) {
           const assetId = decoData.asset;
-          deco.src = `https://cdn.discordapp.com/avatar-decoration-presets/${assetId}.png?size=160`;
+
+          // Thử đường dẫn assets trước (phổ biến hơn cho các khung mới)
+          deco.src = `https://cdn.discordapp.com/avatar-decoration-assets/${assetId}.png?size=160`;
+
+          // Nếu lỗi (không tìm thấy ảnh), tự động đổi sang đường dẫn presets cũ
+          deco.onerror = function () {
+            if (!this.src.includes('avatar-decoration-presets')) {
+              this.src = `https://cdn.discordapp.com/avatar-decoration-presets/${assetId}.png?size=160`;
+            } else {
+              this.style.display = "none"; // Nếu cả 2 đều lỗi thì ẩn luôn
+            }
+          };
+
           deco.style.display = "block";
         } else {
           deco.style.display = "none";
         }
 
-        // 3. Thông tin User
-        document.getElementById('username').innerText = data.discord_user.global_name || data.discord_user.username;
-        const activity = data.activities.find(a => a.type === 4) || data.activities[0];
-        document.getElementById('activity').innerText = activity ? (activity.state || activity.name) : "Offline";
+        // 2. Cập nhật Banner (Ưu tiên màu từ API)
+        const bannerElement = document.getElementById('banner');
+        if (user.banner_color) {
+          bannerElement.style.backgroundImage = "none";
+          bannerElement.style.backgroundColor = user.banner_color;
+        }
+        // Nếu có ảnh banner thực thụ
+        if (user.banner) {
+          const ext = user.banner.startsWith("a_") ? "gif" : "png";
+          bannerElement.style.backgroundImage = `url(https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${ext}?size=600)`;
+        }
 
-        // 4. Status
-        const colors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#80848e' };
-        document.getElementById('status').style.backgroundColor = colors[data.discord_status];
+        // 3. Cập nhật Tên
+        document.getElementById('username').innerText = user.global_name || user.username;
 
-        // 5. Badges
+        // 4. Cập nhật Badges (Tự động lấy từ API)
         const badgesContainer = document.getElementById('badges');
-        badgesContainer.innerHTML = ''; // Làm sạch trước khi chèn
+        badgesContainer.innerHTML = '';
 
-        const myBadgeIds = [
-          "8a88d63823d8a71cd5e390baa45efa02", // HypeSquad Bravery 
-          "6de6d34650760ba5551a79732e98ed60", // Legacy Username 
-          "7d9ae358c8c5e118768335dbe68b4fb8", // Quest Completed 
-          "83d8a1eb09a8d64e59233eec5d4d5c2d"  // Luma Orb
-        ];
+        // Kiểm tra cả 2 trường hợp data.badges hoặc data.user_badges từ API dstn.to
+        const badgeData = data.badges || data.user_badges || [];
 
-        myBadgeIds.forEach(id => {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'badge-wrapper';
+        if (badgeData.length > 0) {
+          badgeData.forEach(badge => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'badge-wrapper';
+            wrapper.setAttribute('data-title', badge.description || "Badge");
 
-          const badgeNames = {
-            "8a88d63823d8a71cd5e390baa45efa02": "HypeSquad Bravery",
-            "6de6d34650760ba5551a79732e98ed60": "Originally known as notanitvn#3391",
-            "7d9ae358c8c5e118768335dbe68b4fb8": "Quest Completed",
-            "83d8a1eb09a8d64e59233eec5d4d5c2d": "Luma Orb"
-          };
+            const img = document.createElement('img');
 
-          wrapper.setAttribute('data-title', badgeNames[id] || "Badge");
+            const badgeIconId = badge.icon || badge.id;
 
-          const img = document.createElement('img');
-          img.src = `https://cdn.discordapp.com/badge-icons/${id}.png`;
-          img.className = 'badge-icon';
+            img.src = `https://cdn.discordapp.com/badge-icons/${badgeIconId}.png`;
+            img.className = 'badge-icon';
 
-          wrapper.appendChild(img);
-          badgesContainer.appendChild(wrapper);
-        });
+            img.onerror = function () { this.parentElement.style.display = 'none'; };
+
+            wrapper.appendChild(img);
+            badgesContainer.appendChild(wrapper);
+          });
+        }
+
+        // 5. Cập nhật Status & Trạng thái (Lấy từ Lanyard để có thời gian thực)
+        // Vì dstn.to là dữ liệu tĩnh, ta vẫn nên gọi nhẹ Lanyard cho Status nếu muốn nút xanh/đỏ nhảy
+        const lanyardRes = await fetch(`https://api.lanyard.rest/v1/users/${MY_ID}`);
+        const lanyardData = await lanyardRes.json();
+        const lData = lanyardData.data;
+
+        // Dấu chấm trạng thái
+        const colors = { online: '#23a55a', idle: '#f0b232', dnd: '#f23f43', offline: '#80848e' };
+        document.getElementById('status').style.backgroundColor = colors[lData.discord_status];
+
+        // Câu status (ví dụ: axolotl is cute :3)
+        const customStatus = lData.activities.find(a => a.type === 4);
+        document.getElementById('activity').innerText = customStatus ? (customStatus.state || "") : "Offline";
 
       } catch (e) {
-        console.error("Lỗi:", e);
+        console.error("Lỗi khi tải dữ liệu Discord:", e);
       }
     }
 
     updateDiscord();
-    setInterval(updateDiscord, 15000); // Cập nhật mỗi 15 giây
+    setInterval(updateDiscord, 30000); // Cập nhật mỗi 30 giây
 
 
     async function loadHomeContent() {
@@ -766,6 +889,10 @@
     }
 
     loadHomeContent();
+
+    document.addEventListener('selectstart', function (e) {
+      e.preventDefault();
+    });
 
     document.oncontextmenu = function () { return false; }
     document.onkeypress = function (event) {

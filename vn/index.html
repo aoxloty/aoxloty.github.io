@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <link href="../favicon.ico" rel="icon" type="image/x-icon">
   <meta charset="UTF-8" />
@@ -8,22 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <style>
-  
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-	
+
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #fdfbfb, #ebedee);
-	  background-image:url('vietnam.png');
-	  background-repeat: no-repeat;
-	  background-position: center;
-	  background-attachment: fixed;
+      background-image: url('vietnam.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
       background-size: cover;
       color: #333;
       padding: 2rem;
@@ -32,8 +32,9 @@
       align-items: center;
       min-height: 100vh;
     }
+
     .container {
-	  position: relative;
+      position: relative;
       background: #f2f6f9;
       padding: 2.5rem;
       border-radius: 20px;
@@ -43,53 +44,69 @@
       text-align: center;
       animation: fadeIn 0.8s ease-in-out;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     h1 {
       color: orange;
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
     }
+
     p {
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
       color: #555;
     }
-	.text-scan {
+
+    .text-scan {
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color: #555;
     }
-	#accountNumber {
-      cursor: pointer; 
-      font-weight: bold; 
-      color: #333; 
+
+    #accountNumber {
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
       background-color: #d3d6d8;
       display: inline-block;
-      padding: 2px 5px; 
-      border-radius: 4px; 
+      padding: 2px 5px;
+      border-radius: 4px;
       margin: 0;
-	  margin-bottom: 0.7rem;
+      margin-bottom: 0.7rem;
     }
+
     img.qr {
       width: 260px;
       max-width: 100%;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       margin-bottom: 0.7rem;
-	  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+      transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
     }
-	img.qr:hover {
-	  transform: scale(1.05);
+
+    img.qr:hover {
+      transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(28, 94, 227, 0.5);
-	}
+    }
+
     .footer {
       margin-top: 0.8rem;
       font-size: 0.9rem;
       color: #999;
     }
+
     .badge {
       display: inline-block;
       background: red;
@@ -99,259 +116,296 @@
       border-radius: 30px;
       margin-bottom: 1rem;
     }
+
     .button2 {
-	  width: 185px; height: 55px;
-	  background-color: #f2f6f9;
-	  border: 2px solid #1c5ee3 ;
-	  border-radius: 50px;
-	  color: #552fab;
-	  padding: 12px 30px;
-	  cursor: pointer;
-	  font-size: 25px;
-	  font-family: "Inter", Monospace;
-	  margin: 0;
-    } 
+      width: 185px;
+      height: 55px;
+      background-color: #f2f6f9;
+      border: 2px solid #1c5ee3;
+      border-radius: 50px;
+      color: #552fab;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 25px;
+      font-family: "Inter", Monospace;
+      margin: 0;
+    }
+
     .button2:hover {
-	  background-color: #1c5ee3;
-	  color: white;
+      background-color: #1c5ee3;
+      color: white;
     }
-   
-	.button {
-	  position: absolute;
-	  top: 2.5rem;
-	  right: 2.5rem;
-	  border: none;
-	  padding: 11px 15px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 25px;
-	  cursor: pointer;
+
+    .button {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      border: none;
+      padding: 11px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 25px;
+      cursor: pointer;
     }
-    .button1 {width: 50px; height: 50px; border: 1px; border-radius: 5px;}
+
+    .button1 {
+      width: 50px;
+      height: 50px;
+      border: 1px;
+      border-radius: 5px;
+    }
+
     .button1:hover {
       background-color: #1c5ee3;
       color: white;
     }
+
     .button1:before {
-    font-family: fontAwesome;
-    content: "\f0ac\00a0";
-	}
-	.button1.button-left:before {
-      content: "\f015\00a0"; 
-	}
+      font-family: fontAwesome;
+      content: "\f0ac\00a0";
+    }
+
+    .button1.button-left:before {
+      content: "\f015\00a0";
+    }
+
     .button1.button-left:hover {
-	   background-color: Purple;
-       color: white;
-	}			
-	.button-left {
-	  position: absolute;
-	  top: 2.5rem;
-	  left: 2.5rem;
-	  border: none;
-	  padding: 15px 4.5px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 17px;
-	  cursor: pointer;
-	  width: 80px;
-	}			
-	.text-bottom-left {
+      background-color: Purple;
+      color: white;
+    }
+
+    .button-left {
+      position: absolute;
+      top: 2.5rem;
+      left: 2.5rem;
+      border: none;
+      padding: 15px 4.5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 17px;
+      cursor: pointer;
+      width: 80px;
+    }
+
+    .text-bottom-left {
       position: absolute;
       bottom: -60px;
       left: 20px;
-      font-size: 16px; 
-      color: #333; 
-      padding: 0 5px; 
-      white-space: nowrap;
-      background-color: #fff; 
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    }
-	.text-rls:link {
+      font-size: 16px;
       color: #333;
-	  text-decoration: none;
-	}
+      padding: 0 5px;
+      white-space: nowrap;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-rls:link {
+      color: #333;
+      text-decoration: none;
+    }
+
     .text-rls:visited {
       color: #333;
-	  text-decoration: none;
-	}
+      text-decoration: none;
+    }
+
     .text-rls:hover {
-	  color: #333;
-	  text-decoration: none;
-	}
+      color: #333;
+      text-decoration: none;
+    }
+
     .text-rls:active {
       color: #333;
-	  text-decoration: none;
-	  }
-	.text-cre:link {
-	  text-decoration: none;
-	  }
+      text-decoration: none;
+    }
+
+    .text-cre:link {
+      text-decoration: none;
+    }
+
     .text-cre:visited {
-	  text-decoration: none;
-	  }
+      text-decoration: none;
+    }
+
     .text-cre:hover {
-	  text-decoration: none;
-	  }
+      text-decoration: none;
+    }
+
     .text-cre:active {
-	  text-decoration: none;
-	  }
-	.button-bottom-right {
-	  position: absolute;
+      text-decoration: none;
+    }
+
+    .button-bottom-right {
+      position: absolute;
       bottom: -50px;
-	  right: 20px;
-	  border: none;
-  	  padding: 12px 8px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 16px;
-	  cursor: pointer;
-	  .button-left {
-	    right: auto; 
-	    left: 2.5rem;
-	   }
-	  width: 60px;
+      right: 20px;
+      border: none;
+      padding: 12px 8px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+
+      .button-left {
+        right: auto;
+        left: 2.5rem;
+      }
+
+      width: 60px;
       height: 45px;
       border: 1px;
       border-radius: 5px;
-	  font-size: 17px;
-	}
-	.button-bottom-right:hover {
-	   background-color: red;
-       color: yellow;
-	}
-	.button-bottom-right:before {
-	   font-family: fontAwesome;
-       content: "\f0da\00a0";
-	}
-	.button-bottom-right:link {
+      font-size: 17px;
+    }
+
+    .button-bottom-right:hover {
+      background-color: red;
+      color: yellow;
+    }
+
+    .button-bottom-right:before {
+      font-family: fontAwesome;
+      content: "\f0da\00a0";
+    }
+
+    .button-bottom-right:link {
       color: white;
-	}
+    }
+
     .button-bottom-right:visited {
       color: white;
-	}
+    }
+
     .button-bottom-right:hover {
-	  color: white;
-	}
+      color: white;
+    }
+
     .button-bottom-right:active {
       color: white;
-	}
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 2rem;
       }
+
       .container {
         padding: 2rem;
       }
-	  .button {
-	    top: 1.5rem;
-		right: 1.5rem;
-	  }
-	  .button-left {
-	    top: 1.5rem;
+
+      .button {
+        top: 1.5rem;
+        right: 1.5rem;
+      }
+
+      .button-left {
+        top: 1.5rem;
         left: 1.5rem;
-		width: 80px;
-	  }
-	  .text-bottom-left {
-	    bottom: -50px;
-        left: -27px;
-	  }
-	}
+        width: 80px;
+      }
+
+      .text-bottom-left {
+        bottom: -50px;
+        left: -27px;
+      }
+    }
   </style>
 </head>
 <script>
-    function copyText(textToCopy) {
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                alert("Đã sao chép số tài khoản: " + textToCopy);
-            }, function(err) {
-                console.error('Không thể sao chép: ', err);
-                fallbackCopyText(textToCopy);
-            });
-        } else {
-            fallbackCopyText(textToCopy);
-        }
+  function copyText(textToCopy) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(function () {
+        alert("Đã sao chép số tài khoản: " + textToCopy);
+      }, function (err) {
+        console.error('Không thể sao chép: ', err);
+        fallbackCopyText(textToCopy);
+      });
+    } else {
+      fallbackCopyText(textToCopy);
     }
-    function fallbackCopyText(textToCopy) {
-        var textArea = document.createElement("textarea");
-        textArea.value = textToCopy;
-        textArea.style.position = "fixed";
-        textArea.style.opacity = "0";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            alert("Đã sao chép số tài khoản: " + textToCopy);
-        } catch (err) {
-            console.error('Không thể sao chép: ', err);
-        }
-        document.body.removeChild(textArea);
+  }
+  function fallbackCopyText(textToCopy) {
+    var textArea = document.createElement("textarea");
+    textArea.value = textToCopy;
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert("Đã sao chép số tài khoản: " + textToCopy);
+    } catch (err) {
+      console.error('Không thể sao chép: ', err);
     }
-    document.oncontextmenu = function () { return false; }
-    function downloadQR() {
-        var qrImage = document.getElementById('qrCodeImage');
-        var imageUrl = qrImage.src;
-		var link = document.createElement('a');
-		link.href = imageUrl;
-        link.download = 'Aoxloty_VietinBank_QR.png';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    document.body.removeChild(textArea);
+  }
+  document.oncontextmenu = function () { return false; }
+  function downloadQR() {
+    var qrImage = document.getElementById('qrCodeImage');
+    var imageUrl = qrImage.src;
+    var link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = 'Aoxloty_VietinBank_QR.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  document.oncontextmenu = function () { return false; }
+  document.onkeypress = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
     }
-	    document.oncontextmenu = function () { return false; }
-	document.onkeypress = function (event) {
-	event = (event || window.event);
-	    if (event.keyCode == 123) {
-	    return false;
-	}
-	}
-	document.onmousedown = function (event) {
-	event = (event || window.event);
-	    if (event.keyCode == 123) {
-	    return false;
-	}
-	}
-	document.onkeydown = function (event) {
-	event = (event || window.event);
-	    if (event.keyCode == 123) {
-	    return false;
-	}
-	}
-	document.addEventListener("keydown", function (event){
-	    if (event.ctrlKey){
-	 	   event.preventDefault();
-		  }
-	    if(event.keyCode == 123){
-		   event.preventDefault();
-		  }
-	})
+  }
+  document.onmousedown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
+    }
+  }
+  document.onkeydown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
+    }
+  }
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey) {
+      event.preventDefault();
+    }
+    if (event.keyCode == 123) {
+      event.preventDefault();
+    }
+  })
 </script>
+
 <body onmousedown="return false" onselectstart="return false">
 
   <div class="container">
-    <a class="button button1" href="/language/" ><b></b></a>
-	<a class="button-bottom-right" href="../earlytest/test.html" ><b>Test</b></a>
-	<a class="button1 button-left" href="/" ><b>Home</b></a>
+    <a class="button button1" href="/language/"><b></b></a>
+    <a class="button1 button-left" href="/"><b>Home</b></a>
     <div style="height: 3rem;"></div>
     <div class="badge">Only in Vietnam!</div>
-	
+
     <h1><b>Aoxloty</b></h1>
     <p>Nếu bạn muốn giúp tui và đang ở Việt Nam, thì đây chính là cách!</p>
-    <img src="./qr-momo.png" alt="Vietinbank QR code" class="qr" id="qrCodeImage"/ >
-	<div style="height: 0.01rem;"></div>
-	<p id="accountNumber" onclick="copyText('108881886905')">108881886905</p>
-	<div style="height: 0.001rem;"></div>
-	<button class="button2" onclick="downloadQR()"><i class="fa fa-cloud-download"></i> <b>Tải về</b></button>
-	<div style="height: 1rem;"></div>
+    <img src="./qr-momo.png" alt="Vietinbank QR code" class="qr" id="qrCodeImage" />
+    <div style="height: 0.01rem;"></div>
+    <p id="accountNumber" onclick="copyText('108881886905')">108881886905</p>
+    <div style="height: 0.001rem;"></div>
+    <button class="button2" onclick="downloadQR()"><i class="fa fa-cloud-download"></i> <b>Tải về</b></button>
+    <div style="height: 1rem;"></div>
     <p class="text-scan">Quét mã bằng app ngân hàng hoặc app thanh toán của bạn.</p>
     <div class="footer">
-      Cảm ơn bạn nhiều nha💛<br/>
-      ©2026 Aoxloty.<br/>
+      Cảm ơn bạn nhiều nha💛<br />
+      ©2026 Aoxloty.<br />
     </div>
-	<p class="text-bottom-left" >v206.0103a</p>
   </div>
 </body>
+
 </html>

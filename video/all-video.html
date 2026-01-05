@@ -1,83 +1,227 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Videos | Aoxloty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #ebedee; display: flex; justify-content: center; padding: 2rem; }
-        .container { background: #fff; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 900px; width: 100%; text-align: center; }
-        .nav-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 2rem; }
-        .button-home { text-decoration: none; color: #333; font-weight: bold; border: 1px solid #ccc; padding: 8px 20px; border-radius: 8px; transition: 0.3s; }
-        .button-home:hover { background: #f0f0f0; border-color: orange; }
-        
-        h1 { color: orange; margin-bottom: 2rem; }
-      .back-home {
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      text-decoration: none;
-      color: #555;
-      font-weight: 600;
-      transition: 0.3s;
-      }
-      .back-home:hover { color: orange; }
-        
-        
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .video-card { background: #f9f9f9; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .video-card iframe { width: 100%; height: 200px; border-radius: 10px; border: none; }
-        .video-card h3 { margin: 15px 0 5px; font-size: 1.1rem; color: #333; }
-        .video-card p { font-size: 0.9rem; color: #666; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ebedee;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .button-home {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .button-home:hover {
+            background: #f0f0f0;
+            border-color: orange;
+        }
+
+        h1 {
+            color: orange;
+            margin-bottom: 2rem;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            color: orange;
+        }
+
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .video-card h3 {
+            margin: 15px 0 5px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .video-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        #backToTop {
+            opacity: 0;
+            visibility: hidden;
+
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            width: 50px;
+            /* Chiều rộng cố định */
+            height: 50px;
+            /* Chiều cao cố định */
+            border: none;
+            background-color: #2563eb;
+            /* Màu xanh hiện đại */
+            color: white;
+            border-radius: 50%;
+            /* Hình tròn tuyệt đối */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Đổ bóng nhẹ */
+            cursor: pointer;
+            transition: opacity 0.5s ease, visibility 0.5s;
+            display: flex;
+            /* Để icon luôn ở giữa */
+            align-items: center;
+            justify-content: center;
+        }
+
+        #backToTop:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-5px);
+            /* Nhảy nhẹ lên khi di chuột vào */
+        }
+
+        #backToTop i {
+            font-size: 20px;
+            /* Chỉnh cỡ biểu tượng */
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
+
 <body>
+    <button id="backToTop" title="Lên đầu trang">
+        <i class="fas fa-chevron-up"></i> </button>
     <div class="container">
-       <a href="../index.html" class="back-home">← Back to Home</a>
+        <a href="../index.html" class="back-home">← Back to Home</a>
+
 
         <h1>My Works</h1>
 
         <div id="video-list" class="video-grid">
-            </div>
+        </div>
 
         <div style="margin-top: 3rem; color: #999;">©2025 Aoxloty.</div>
     </div>
 
-    
+
     <script>
-    async function initVideos() {
-    const container = document.getElementById('video-list');
-    
-    try {
-        const response = await fetch('../data.json');
-        const data = await response.json();
-        const videoData = data.videoData;
 
-        if (videoData && videoData.length > 0) {
-            container.innerHTML = ""; 
-            const reversedVideos = [...videoData].reverse(); 
+        let mybutton = document.getElementById("backToTop");
 
-            reversedVideos.forEach(video => {
-                const card = document.createElement('div');
-                card.className = 'video-card';
-                card.innerHTML = `
+        // Khi người dùng cuộn chuột xuống 20px từ đầu trang, hiện nút
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            let mybutton = document.getElementById("backToTop");
+
+            // Kiểm tra nếu cuộn xuống quá 100px
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                mybutton.classList.add("show");
+            } else {
+                mybutton.classList.remove("show");
+            }
+        }
+
+        // Khi nhấn vào nút, cuộn lên đầu trang
+        mybutton.onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Tạo hiệu ứng cuộn mượt mà
+            });
+        };
+
+        async function initVideos() {
+            const container = document.getElementById('video-list');
+
+            try {
+                const response = await fetch('../data.json');
+                const data = await response.json();
+                const videoData = data.videoData;
+
+                if (videoData && videoData.length > 0) {
+                    container.innerHTML = "";
+                    const reversedVideos = [...videoData].reverse();
+
+                    reversedVideos.forEach(video => {
+                        const card = document.createElement('div');
+                        card.className = 'video-card';
+                        card.innerHTML = `
                     <div class="video-wrapper">
                         <iframe src="${video.embedUrl}" allowfullscreen></iframe>
                     </div>
                     <h3>${video.title}</h3>
                     <p>${video.description}</p>
                 `;
-                container.appendChild(card);
-            });
-        } else {
-            container.innerHTML = "<p>No videos available.</p>";
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = "<p>No videos available.</p>";
+                }
+            } catch (error) {
+                console.error("Lỗi nạp video:", error);
+                container.innerHTML = "<p>Error loading videos.</p>";
+            }
         }
-    } catch (error) {
-        console.error("Lỗi nạp video:", error);
-        container.innerHTML = "<p>Error loading videos.</p>";
-    }
-}
 
-window.onload = initVideos;
+        window.onload = initVideos;
     </script>
 </body>
+
 </html>
