@@ -1,23 +1,76 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Choose your language</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
+    /* --- DARK MODE STYLES (ĐỒNG BỘ TOÀN DIỆN) --- */
+    body.dark-mode {
+      background-color: #121212 !important;
+      color: #e0e0e0 !important;
+    }
+
+    /* Làm tối hình nền blur phía sau */
+    body.dark-mode::before {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('artfightlol.png') !important;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    body.dark-mode p {
+      color: #aaa !important;
+    }
+
+    /* Nút Home trong Dark Mode */
+    body.dark-mode .button-center-bottom {
+      background-color: #333 !important;
+      color: white !important;
+    }
+
+    body.dark-mode .button-center-bottom:hover {
+      background-color: Purple !important;
+    }
+
+    /* Hiệu ứng ảnh ngôn ngữ trong Dark Mode */
+    body.dark-mode .lang-img {
+      border-color: #444;
+      filter: brightness(0.9);
+    }
+
+    body.dark-mode .lang-img:hover {
+      border-color: #e67e22;
+      filter: brightness(1.1);
+    }
+
+    /* Hiệu ứng chuyển màu mượt mà */
+    body,
+    .container,
+    p,
+    a,
+    .lang-img {
+      transition: all 0.3s ease-in-out;
+    }
+
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: gray;
-	  background-repeat: no-repeat;
-	  background-position: center;
-	  background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
       background-size: cover;
       color: #333;
       padding: 2rem;
@@ -25,26 +78,27 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-	  position: relative; 
+      position: relative;
       overflow: hidden;
     }
-	
-	body::before {
-		content: '';
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		background-image: url('artfightlol.png');
-		background-repeat: no-repeat;
-		background-position: center;
-		background-attachment: fixed;
-		background-size: cover;
-		filter: blur(10px);
-		transform: scale(1.05); 
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url('artfightlol.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      filter: blur(10px);
+      transform: scale(1.05);
     }
+
     .container {
       background: #fff;
       padding: 2.5rem;
@@ -56,23 +110,34 @@
       width: 100%;
       text-align: center;
       animation: fadeIn 0.5s ease-in-out;
-	  position: relative;
-	  padding-bottom: 4.5rem;
+      position: relative;
+      padding-bottom: 4.5rem;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     h1 {
       color: #e67e22;
       font-size: 2.2rem;
       margin-bottom: 1rem;
     }
+
     p {
       font-size: 1.1rem;
       margin-bottom: 0.8rem;
       color: #555;
     }
+
     img.qr {
       width: 260px;
       max-width: 100%;
@@ -80,11 +145,13 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       margin-bottom: 1.5rem;
     }
+
     .footer {
       margin-top: 2rem;
       font-size: 0.9rem;
       color: #999;
     }
+
     .badge {
       display: inline-block;
       background: #e67e22;
@@ -94,151 +161,193 @@
       border-radius: 30px;
       margin-bottom: 1rem;
     }
-	.button-bottom-right {
-	  position: absolute;
+
+    .button-bottom-right {
+      position: absolute;
       bottom: 2.5rem;
-	  right: 2.5rem;
-	  border: none;
-  	  padding: 15px 8px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 16px;
-	  cursor: pointer;
-	  .button-left {
-	    right: auto; 
-	    left: 2.5rem;
-	   }
-	   width: 60px;
-       height: 50px;
-       border: 1px;
-       border-radius: 5px;
-	   font-size: 17px;
-	}
-	.button-bottom-right:hover {
-	   background-color: red;
-       color: yellow;
-	}
-	.button-bottom-right:before {
-	   font-family: fontAwesome;
-       content: "\f0da\00a0"; }
-	.language-buttons {
-    display: flex; 
-    justify-content: center;
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 2rem; 
-	}
-	.lang-img {
-    width: 250px; 
-    height: auto;
-    max-width: 100%; 
-    cursor: pointer; 
-	transition: transform 0.2s ease-in-out;
-	z-index: 1;
-	border: 2px solid #ccc;
-	border-radius: 10px;
-	margin-top: 0.7rem;
-	}
-	.lang-img:hover {
-    transform: scale(1.1);
-    z-index: 10;
-	border-color: #e67e22; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      right: 2.5rem;
+      border: none;
+      padding: 15px 8px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+
+      .button-left {
+        right: auto;
+        left: 2.5rem;
+      }
+
+      width: 60px;
+      height: 50px;
+      border: 1px;
+      border-radius: 5px;
+      font-size: 17px;
     }
+
+    .button-bottom-right:hover {
+      background-color: red;
+      color: yellow;
+    }
+
+    .button-bottom-right:before {
+      font-family: fontAwesome;
+      content: "\f0da\00a0";
+    }
+
+    .language-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .lang-img {
+      width: 250px;
+      height: auto;
+      max-width: 100%;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+      z-index: 1;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin-top: 0.7rem;
+    }
+
+    .lang-img:hover {
+      transform: scale(1.1);
+      z-index: 10;
+      border-color: #e67e22;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     .button-center-bottom {
-    position: absolute;
-    bottom: 2.5rem; 
-    left: 50%; 
-    transform: translateX(-50%);
-    width: 80px;
-    height: 50px; 
-    border: 1px; 
-    border-radius: 5px;
-    padding: 15px 4.5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 17px;
-    cursor: pointer;
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 50px;
+      border: 1px;
+      border-radius: 5px;
+      padding: 15px 4.5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 17px;
+      cursor: pointer;
     }
-	.button-center-bottom:hover {
-		background-color: Purple;
-		color: white;
+
+    .button-center-bottom:hover {
+      background-color: Purple;
+      color: white;
     }
-	.button-center-bottom:before {
-		font-family: fontAwesome;
-		content: "\f015\00a0"; 
-	}
+
+    .button-center-bottom:before {
+      font-family: fontAwesome;
+      content: "\f015\00a0";
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 1rem;
       }
+
       .container {
         padding: 1rem;
-		padding-bottom:4rem;
+        padding-bottom: 4rem;
       }
-	  .button-bottom-right {
-	    bottom: 1.5rem;
+
+      .button-bottom-right {
+        bottom: 1.5rem;
         right: 1.5rem;
-	  }
-	  .language-buttons {
+      }
+
+      .language-buttons {
         gap: 2vw;
-	  }
-    
+      }
+
       .lang-img {
         width: 40vw;
       }
-	  .lang-img:hover {
+
+      .lang-img:hover {
         transform: scale(1.15);
       }
     }
-	
   </style>
 </head>
 <script>
-    document.oncontextmenu = function () { return false; }
-	document.onkeypress = function (event) {
-	event = (event || window.event);
-	   if (event.keyCode == 123) {
-	   return false;
-	}
-	}
-	document.onmousedown = function (event) {
-	event = (event || window.event);
-	   if (event.keyCode == 123) {
-	   return false;
-	}
-	}
-	document.onkeydown = function (event) {
-	event = (event || window.event);
-	   if (event.keyCode == 123) {
-	   return false;
-	}
-	}
-	document.addEventListener("keydown", function (event){
-	   if (event.ctrlKey){
-	 	  event.preventDefault();
-		 }
-	   if(event.keyCode == 123){
-		  event.preventDefault();
-		 }
-	})
-	
+
+  // KIỂM TRA VÀ ÁP DỤNG DARK MODE TỪ LOCALSTORAGE
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add('dark-mode');
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add('dark-mode');
+      });
+    }
+  })();
+
+  // LẮNG NGHE THAY ĐỔI TỪ CÁC TAB KHÁC
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'theme') {
+      if (e.newValue === 'dark') document.body.classList.add('dark-mode');
+      else document.body.classList.remove('dark-mode');
+    }
+  });
+
+
+
+  document.oncontextmenu = function () { return false; }
+  document.onkeypress = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
+    }
+  }
+  document.onmousedown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
+    }
+  }
+  document.onkeydown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+      return false;
+    }
+  }
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey) {
+      event.preventDefault();
+    }
+    if (event.keyCode == 123) {
+      event.preventDefault();
+    }
+  })
+
 </script>
+
 <body onmousedown="return false" onselectstart="return false">
   <div class="container">
     <p>Choose your language</p>
-	<p>Chọn ngôn ngữ của bạn</p>
+    <p>Chọn ngôn ngữ của bạn</p>
     <div class="language-buttons">
-        <a href="/en/">
-            <img src="eng.png" alt="English Language" class="lang-img">
-        </a>
-        <a href="/vn/">
-            <img src="vn.png" alt="Vietnamese Language" class="lang-img">
-        </a>
+      <a href="/en/">
+        <img src="eng.png" alt="English Language" class="lang-img">
+      </a>
+      <a href="/vn/">
+        <img src="vn.png" alt="Vietnamese Language" class="lang-img">
+      </a>
     </div>
     <a class="button-center-bottom" href="/"><b>Home</b></a>
   </div>
 </body>
+
 </html>

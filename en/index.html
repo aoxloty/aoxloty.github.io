@@ -83,7 +83,7 @@
       margin-top: 1rem;
       margin-bottom: 1.5rem;
     }
-    }
+
 
     .axolotl-img {
       display: block;
@@ -293,6 +293,61 @@
       transform: scale(1.05);
     }
 
+    body.dark-mode {
+      background-color: #121212 !important;
+      /* Hiệu ứng lớp phủ tối cho hình nền */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('artfightlol.png') !important;
+      color: #e0e0e0 !important;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    body.dark-mode h1 {
+      color: #1c5ee3;
+    }
+
+    /* Giữ màu xanh đặc trưng hoặc đổi sang cam tùy ý bạn */
+    body.dark-mode p {
+      color: #aaa !important;
+    }
+
+    /* Nút Ngôn ngữ & Home trong Dark Mode */
+    body.dark-mode .button1,
+    body.dark-mode .button-left {
+      background-color: #333 !important;
+      color: white !important;
+    }
+
+    body.dark-mode .button1:hover {
+      background-color: red !important;
+      color: yellow !important;
+    }
+
+    body.dark-mode .button-left:hover {
+      background-color: Purple !important;
+    }
+
+    body.dark-mode .badge {
+      background: #1c5ee3;
+      color: white;
+    }
+
+    body.dark-mode .footer {
+      color: #666;
+    }
+
+    /* Chuyển màu mượt mà */
+    body,
+    .container,
+    button,
+    a,
+    p {
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 2rem;
@@ -325,6 +380,20 @@
   </style>
 </head>
 <script>
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add('dark-mode');
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add('dark-mode');
+      });
+    }
+  })();
+
+
+
   document.oncontextmenu = function () { return false; }
   document.onkeypress = function (event) {
     event = (event || window.event);
@@ -351,8 +420,10 @@
     if (event.keyCode == 123) {
       event.preventDefault();
     }
-  })  
+  })
+
 </script>
+
 
 <body onmousedown="return false" onselectstart="return false">
 
@@ -375,7 +446,7 @@
       Thank you so much💛<br />
       ©2026 Aoxloty.<br />
     </div>
-    
+
   </div>
 
 </body>

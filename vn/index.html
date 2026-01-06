@@ -17,6 +17,60 @@
       padding: 0;
     }
 
+
+
+
+    /* --- DARK MODE STYLES (CẬP NHẬT HIỆN BACKGROUND) --- */
+    body.dark-mode {
+      /* Giữ nguyên hình nền nhưng đổi lớp nền phía dưới thành màu tối */
+      background-color: #121212 !important;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('vietnam.png') !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-attachment: fixed !important;
+      background-size: cover !important;
+      color: #e0e0e0 !important;
+    }
+
+    /* Các phần còn lại giữ nguyên như cũ */
+    body.dark-mode .container {
+      background: #1e1e1e !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    body.dark-mode h1 {
+      color: #ff9800;
+    }
+
+    body.dark-mode p,
+    body.dark-mode .text-scan {
+      color: #aaa;
+    }
+
+    body.dark-mode .button1 {
+      background-color: #333 !important;
+      color: white !important;
+    }
+
+    body.dark-mode .button1:hover {
+      background-color: #1c5ee3 !important;
+    }
+
+    body.dark-mode .button1.button-left:hover {
+      background-color: Purple !important;
+    }
+
+    body.dark-mode .button2 {
+      background-color: #1e1e1e;
+      border-color: #ff9800;
+      color: #ff9800;
+    }
+
+    body.dark-mode .button2:hover {
+      background-color: #ff9800;
+      color: white;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #fdfbfb, #ebedee);
@@ -316,6 +370,42 @@
   </style>
 </head>
 <script>
+
+  // 1. KIỂM TRA VÀ ÁP DỤNG DARK MODE NGAY LẬP TỨC
+  (function () {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.classList.add('dark-mode'); // Dùng documentElement để nhanh hơn
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add('dark-mode');
+      });
+    }
+  })();
+
+  // 2. LẮNG NGHE THAY ĐỔI TỪ CÁC TAB KHÁC (TRANG CHỦ)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'theme') {
+      if (e.newValue === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+  });
+
+  // 3. LẮNG NGHE THAY ĐỔI TỪ HỆ THỐNG
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+      if (e.matches) document.body.classList.add('dark-mode');
+      else document.body.classList.remove('dark-mode');
+    }
+  });
+
+
+
+
   function copyText(textToCopy) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(textToCopy).then(function () {
