@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Loading Art...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -12,6 +14,7 @@
             display: flex;
             justify-content: center;
             padding: 2rem;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -23,6 +26,7 @@
             width: 90%;
             text-align: center;
             margin: 10px auto;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         #art-image {
@@ -71,7 +75,35 @@
             transform: scale(1.05);
         }
 
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
 
+        .dark-mode-toggle i {
+            font-size: 20px;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Dark Mode Styles */
         body.dark-mode {
             background: #121212 !important;
             color: #e0e0e0 !important;
@@ -84,7 +116,6 @@
 
         body.dark-mode h1 {
             color: #ff9800;
-            /* Màu cam nhạt hơn cho dễ nhìn trên nền đen */
         }
 
         body.dark-mode .button-home {
@@ -104,16 +135,38 @@
         body.dark-mode #art-desc {
             color: #ccc;
         }
+
+        body.dark-mode .dark-mode-toggle {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .dark-mode-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .dark-mode-toggle:active {
+                transform: scale(0.95);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <!-- Nút Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle" title="Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+    </button>
 
+    <div class="container">
         <a class="button-home" href="javascript:history.back()">← Back</a>
         <a class="button-home" href="index.html">Home</a>
         <a class="button-home" href="draws/all-art.html">Gallery</a>
-
 
         <h1 id="art-title">Đang tải...</h1>
         <p id="art-date" style="color: #888; font-size: 0.9rem; margin: 5px 0;"></p>
@@ -131,27 +184,66 @@
     </div>
 
     <script>
+        // Dark Mode Toggle với localStorage
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const icon = darkModeToggle.querySelector('i');
 
+        // Hàm bật Dark Mode
+        function enableDarkMode() {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        }
 
+        // Hàm tắt Dark Mode
+        function disableDarkMode() {
+            body.classList.remove('dark-mode');
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+
+        // Kiểm tra trạng thái ban đầu
         function applyDarkMode() {
-            if (localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark-mode');
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                enableDarkMode();
             } else {
-                document.body.classList.remove('dark-mode');
+                disableDarkMode();
             }
         }
 
-        // Chạy hàm kiểm tra ngay lập tức
+        // Áp dụng ngay khi tải trang
         applyDarkMode();
 
-        // (Tùy chọn) Lắng nghe nếu bạn mở nhiều tab và đổi Dark Mode ở tab kia
+        // Sự kiện khi nhấn nút
+        darkModeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+            darkModeToggle.blur();
+        });
+
+        // Lắng nghe thay đổi từ tab khác
         window.addEventListener('storage', (e) => {
             if (e.key === 'theme') {
                 applyDarkMode();
             }
         });
 
+        // Lắng nghe thay đổi từ hệ thống
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) enableDarkMode();
+                else disableDarkMode();
+            }
+        });
 
+        // Load Art Detail
         async function loadArtDetail() {
             const titleH1 = document.getElementById('art-title');
             const imageImg = document.getElementById('art-image');
@@ -165,7 +257,6 @@
 
                 const response = await fetch('data.json');
                 const data = await response.json();
-
 
                 const art = data.artData.find(item => item.id === artId);
 

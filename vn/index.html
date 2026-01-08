@@ -6,69 +6,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giúp tui!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-
-
-
-    /* --- DARK MODE STYLES (CẬP NHẬT HIỆN BACKGROUND) --- */
-    body.dark-mode {
-      /* Giữ nguyên hình nền nhưng đổi lớp nền phía dưới thành màu tối */
-      background-color: #121212 !important;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('vietnam.png') !important;
-      background-repeat: no-repeat !important;
-      background-position: center !important;
-      background-attachment: fixed !important;
-      background-size: cover !important;
-      color: #e0e0e0 !important;
-    }
-
-    /* Các phần còn lại giữ nguyên như cũ */
-    body.dark-mode .container {
-      background: #1e1e1e !important;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
-    }
-
-    body.dark-mode h1 {
-      color: #ff9800;
-    }
-
-    body.dark-mode p,
-    body.dark-mode .text-scan {
-      color: #aaa;
-    }
-
-    body.dark-mode .button1 {
-      background-color: #333 !important;
-      color: white !important;
-    }
-
-    body.dark-mode .button1:hover {
-      background-color: #1c5ee3 !important;
-    }
-
-    body.dark-mode .button1.button-left:hover {
-      background-color: Purple !important;
-    }
-
-    body.dark-mode .button2 {
-      background-color: #1e1e1e;
-      border-color: #ff9800;
-      color: #ff9800;
-    }
-
-    body.dark-mode .button2:hover {
-      background-color: #ff9800;
-      color: white;
     }
 
     body {
@@ -85,6 +32,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .container {
@@ -97,6 +45,7 @@
       width: 100%;
       text-align: center;
       animation: fadeIn 0.8s ease-in-out;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     @keyframes fadeIn {
@@ -195,11 +144,11 @@
       top: 2.5rem;
       right: 2.5rem;
       border: none;
-      padding: 11px 15px;
       text-align: center;
       text-decoration: none;
-      display: inline-block;
-      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
     }
 
@@ -208,6 +157,8 @@
       height: 50px;
       border: 1px;
       border-radius: 5px;
+      font-size: 20px;
+      padding: 0;
     }
 
     .button1:hover {
@@ -217,11 +168,12 @@
 
     .button1:before {
       font-family: fontAwesome;
-      content: "\f0ac\00a0";
+      content: "\f0ac";
     }
 
     .button1.button-left:before {
-      content: "\f015\00a0";
+      content: "\f015";
+      margin-right: 5px;
     }
 
     .button1.button-left:hover {
@@ -234,13 +186,16 @@
       top: 2.5rem;
       left: 2.5rem;
       border: none;
-      padding: 15px 4.5px;
       text-align: center;
       text-decoration: none;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 17px;
       cursor: pointer;
       width: 80px;
+      height: 50px;
+      padding: 0;
     }
 
     .text-bottom-left {
@@ -303,12 +258,6 @@
       display: inline-block;
       font-size: 16px;
       cursor: pointer;
-
-      .button-left {
-        right: auto;
-        left: 2.5rem;
-      }
-
       width: 60px;
       height: 45px;
       border: 1px;
@@ -342,6 +291,93 @@
       color: white;
     }
 
+    /* Dark Mode Toggle Button */
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      width: 50px;
+      height: 50px;
+      border: none;
+      background-color: #fff;
+      color: #333;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .dark-mode-toggle i {
+      font-size: 20px;
+    }
+
+    .dark-mode-toggle:hover {
+      transform: translateY(-5px);
+    }
+
+    /* --- DARK MODE STYLES --- */
+    body.dark-mode {
+      background-color: #121212 !important;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('vietnam.png') !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-attachment: fixed !important;
+      background-size: cover !important;
+      color: #e0e0e0 !important;
+    }
+
+    body.dark-mode .container {
+      background: #1e1e1e !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    body.dark-mode h1 {
+      color: #ff9800;
+    }
+
+    body.dark-mode p,
+    body.dark-mode .text-scan {
+      color: #aaa;
+    }
+
+    body.dark-mode .button1 {
+      background-color: #333 !important;
+      color: white !important;
+    }
+
+    body.dark-mode .button1:hover {
+      background-color: #1c5ee3 !important;
+    }
+
+    body.dark-mode .button1.button-left:hover {
+      background-color: Purple !important;
+    }
+
+    body.dark-mode .button2 {
+      background-color: #1e1e1e;
+      border-color: #ff9800;
+      color: #ff9800;
+    }
+
+    body.dark-mode .button2:hover {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    body.dark-mode #accountNumber {
+      background-color: #333;
+      color: #fff;
+    }
+
+    body.dark-mode .dark-mode-toggle {
+      background-color: #333;
+      color: #fff;
+    }
+
     @media (max-width: 480px) {
       body {
         padding: 2rem;
@@ -360,37 +396,51 @@
         top: 1.5rem;
         left: 1.5rem;
         width: 80px;
+        font-size: 15px;
       }
 
       .text-bottom-left {
         bottom: -50px;
         left: -27px;
       }
+
+      .dark-mode-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+      }
+
+      .dark-mode-toggle:active {
+        transform: scale(0.95);
+      }
     }
   </style>
 </head>
-<script>
 
+<script>
   // 1. KIỂM TRA VÀ ÁP DỤNG DARK MODE NGAY LẬP TỨC
   (function () {
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-      document.documentElement.classList.add('dark-mode'); // Dùng documentElement để nhanh hơn
+      document.documentElement.classList.add('dark-mode');
       document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add('dark-mode');
       });
     }
   })();
 
-  // 2. LẮNG NGHE THAY ĐỔI TỪ CÁC TAB KHÁC (TRANG CHỦ)
+  // 2. LẮNG NGHE THAY ĐỔI TỪ CÁC TAB KHÁC
   window.addEventListener('storage', (e) => {
     if (e.key === 'theme') {
       if (e.newValue === 'dark') {
         document.body.classList.add('dark-mode');
+        updateDarkModeIcon(true);
       } else {
         document.body.classList.remove('dark-mode');
+        updateDarkModeIcon(false);
       }
     }
   });
@@ -398,13 +448,53 @@
   // 3. LẮNG NGHE THAY ĐỔI TỪ HỆ THỐNG
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     if (!localStorage.getItem('theme')) {
-      if (e.matches) document.body.classList.add('dark-mode');
-      else document.body.classList.remove('dark-mode');
+      if (e.matches) {
+        document.body.classList.add('dark-mode');
+        updateDarkModeIcon(true);
+      } else {
+        document.body.classList.remove('dark-mode');
+        updateDarkModeIcon(false);
+      }
     }
   });
 
+  // 4. HÀM CẬP NHẬT ICON
+  function updateDarkModeIcon(isDark) {
+    const icon = document.querySelector('.dark-mode-toggle i');
+    if (icon) {
+      if (isDark) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    }
+  }
 
+  // 5. XỬ LÝ NÚT TOGGLE SAU KHI DOM LOAD
+  document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const icon = darkModeToggle.querySelector('i');
 
+    // Đồng bộ icon với trạng thái hiện tại
+    if (body.classList.contains('dark-mode')) {
+      icon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    // Xử lý sự kiện click
+    darkModeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+      }
+      darkModeToggle.blur();
+    });
+  });
 
   function copyText(textToCopy) {
     if (navigator.clipboard) {
@@ -418,6 +508,7 @@
       fallbackCopyText(textToCopy);
     }
   }
+
   function fallbackCopyText(textToCopy) {
     var textArea = document.createElement("textarea");
     textArea.value = textToCopy;
@@ -434,7 +525,9 @@
     }
     document.body.removeChild(textArea);
   }
+
   document.oncontextmenu = function () { return false; }
+
   function downloadQR() {
     var qrImage = document.getElementById('qrCodeImage');
     var imageUrl = qrImage.src;
@@ -445,25 +538,28 @@
     link.click();
     document.body.removeChild(link);
   }
-  document.oncontextmenu = function () { return false; }
+
   document.onkeypress = function (event) {
     event = (event || window.event);
     if (event.keyCode == 123) {
       return false;
     }
   }
+
   document.onmousedown = function (event) {
     event = (event || window.event);
     if (event.keyCode == 123) {
       return false;
     }
   }
+
   document.onkeydown = function (event) {
     event = (event || window.event);
     if (event.keyCode == 123) {
       return false;
     }
   }
+
   document.addEventListener("keydown", function (event) {
     if (event.ctrlKey) {
       event.preventDefault();
@@ -475,6 +571,10 @@
 </script>
 
 <body onmousedown="return false" onselectstart="return false">
+  <!-- Nút Dark Mode Toggle -->
+  <button class="dark-mode-toggle" id="darkModeToggle" title="Dark/Light Mode">
+    <i class="fas fa-moon"></i>
+  </button>
 
   <div class="container">
     <a class="button button1" href="/language/"><b></b></a>

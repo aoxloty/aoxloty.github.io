@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aoxloty Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -603,6 +603,56 @@
       color: yellow;
     }
 
+    /* Avatar clickable wrapper */
+    .avatar-link {
+      display: inline-block;
+      position: relative;
+      border-radius: 30%;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .avatar-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+    }
+
+    .avatar-link img {
+      width: 177px;
+      height: 170px;
+      border-radius: 30%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: block;
+      transition: filter 0.3s ease;
+    }
+
+    .avatar-link:hover img {
+      filter: brightness(1.1);
+    }
+
+    /* Overlay icon khi hover */
+    .avatar-link::after {
+      content: '\f08e';
+      /* Font Awesome map icon */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+    }
+
+    .avatar-link:hover::after {
+      opacity: 0.9;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 1.5rem 1rem;
@@ -668,7 +718,7 @@
       h3,
       .art-gallery {
         width: 100%;
-      
+
         /* Ép các thành phần này rộng hết cỡ, không bị bóp thành đường kẻ */
       }
 
@@ -751,8 +801,10 @@
     <button id="backToTop" title="Back to Top">
       <i class="fas fa-chevron-up"></i> </button>
     <div class="profile-header">
-      <img src="Untitled-1.png" alt="Aoxloty"
-        style="width:177px; height:170px; border-radius: 30%; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+      <a href="https://wplace.samuelscheit.com/#z=15.00&lat=21.11746&lng=105.79732&time=2025-08-09T20-01-14.231Z&zoom=15.00"
+        class="avatar-link" title="View on ARTPLACE" target="_blank">
+        <img src="Untitled-1.png" alt="Aoxloty" />
+      </a>
 
       <div class="profile-info">
 
